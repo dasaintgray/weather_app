@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_overrides
+// ignore_for_file: unnecessary_overrides, avoid_print
 
 import 'package:get/get.dart';
 import 'package:location/location.dart';
@@ -58,8 +58,26 @@ class HomeController extends GetxController {
     final response = await ServiceProvider.getWeatherByLongLatByXML(longtitude: long!, latitude: lat!);
 
     final document = XmlDocument.parse(response);
-    print(document.toString());
-    print(document.toXmlString(pretty: true, indent: '\t'));
+    final city = document.findAllElements('city').first;
+    final cityName = city.getAttribute('name');
+    final longitude = city.findElements('coord').first.getAttribute('lon');
+    final latitude = city.findElements('coord').first.getAttribute('lat');
+    final country = city.findElements('country').first;
+    final temperature = document.findAllElements('temperature').first.getAttribute('value');
+    final humidity = document.findAllElements('humidity').first.getAttribute('value');
+    final windSpeed = document.findAllElements('speed').first.getAttribute('value');
+    final weatherCondition = document.findAllElements('weather').first.getAttribute('value');
+    final lastUpdate = document.findAllElements('lastupdate').first.getAttribute('value');
+
+    // Print the extracted data
+    print('City: $cityName');
+    print('Coordinates: $latitude, $longitude');
+    print('Country: $country');
+    print('Temperature: $temperature °C');
+    print('Humidity: $humidity%');
+    print('Wind Speed: $windSpeed m/s');
+    print('Weather: $weatherCondition');
+    print('Last Update: $lastUpdate');
 
     return true;
   }
