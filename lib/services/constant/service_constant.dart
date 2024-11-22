@@ -13,8 +13,8 @@ class ServiceConstant {
 
   // endpoint
   static const String baseURL = 'http://api.openweathermap.org/data/2.5';
-  static const String weatherEndPoint = '/weather?APPID=c2065de009186fd5c5b393a829d003ba&units=metric';
-  // https://api.openweathermap.org/data/2.5/weather?APPID=c2065de009186fd5c5b393a829d003ba&units=metric&q=London
+  static const String weatherEndPoint = '/weather?APPID=&units=metric';
+  // https://api.openweathermap.org/data/2.5/weather?APPID=&units=metric&q=London
 
   // endpoint params - xml type
   static const String xmlMode = '&mode=xml';
